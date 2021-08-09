@@ -1,4 +1,5 @@
 ﻿using CoreMVCIntro.Models.Context;
+using CoreMVCIntro.VMClasses;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,12 @@ namespace CoreMVCIntro.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            ProductVM pvm = new ProductVM
+            {
+                Products = _db.Products.ToList(),
+                Categories = _db.Categories.ToList()
+            };
+            return View(pvm);
         }
     }
 }
