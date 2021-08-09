@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreMVCIntro.VMClasses
 {
-    public class EmployeeVM_
+    public class EmployeeVM
     {
         public List<Employee> Employees { get; set; }
         public Employee Employee { get; set; }
