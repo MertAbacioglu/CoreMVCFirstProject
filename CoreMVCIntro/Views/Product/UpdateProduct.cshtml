@@ -1,0 +1,21 @@
+﻿@model ProductVM
+
+
+<form asp-action="UpdateProduct" asp-controller="Product" method="post">
+        
+    <input type="hidden"asp-for="Product.ID"/> @*id'mi gönderiyorum*@
+    <div>
+        <input type="text" asp-for="Product.ProductName" placeholder="ürün adı girin" />
+    </div>
+    <div>
+        <input asp-for="Product.UnitInStock" placeholder="stok girin">
+    </div>
+    <div>
+        <select asp-for="Product.CategoryID" asp-items='new SelectList(Model.Categories,"ID","CategoryName")'>
+            <option>
+                Lütfen Seçiniz
+            </option>
+        </select>
+    </div>
+    <button>Ekle</button>
+</form>
