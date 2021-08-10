@@ -4,12 +4,6 @@
 }
 
 <h1>Index</h1>
-@if (Model.Products.Count==0)
-{
-    <div>
-        henüz ürün bulunmamaktadır.Eklemek için <a asp-action="AddProduct"asp-controller="Product">Tıklayınız</a>
-    </div>
-}
 
 <table class="table table-hover">
     <tr>
@@ -30,8 +24,8 @@
             {
             <td>kategori belirtilmemiş</td>
             }
-            <td><a class="btn btn-warning" asp-action="UpdateProduct" asp-controller="Product" asp-route-id="@item.ID">Güncelle</a></td>
-            <td><a class="btn btn-danger" asp-action="DeleteProduct" asp-controller="Product" asp-route-id="@item.ID">Sil</a></td>
+            <td><a asp-action="AddCategory" asp-controller="Product" asp-route-id="@item.ID"></a></td>
+            <td><a asp-action="UpdateCategory" asp-controller="Product" asp-route-id="@item.ID"></a></td>
         </tr>
     }
 </table>
