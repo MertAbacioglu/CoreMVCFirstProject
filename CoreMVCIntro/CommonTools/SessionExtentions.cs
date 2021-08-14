@@ -20,7 +20,7 @@ namespace CoreMVCIntro.CommonTools
             session.SetString(key, objectString); // key ve value'sunu verdik böylece
         }
 
-        //Session'ı geri almak lazım. Session object tutar diyorduk, cast etmesi lazım. GENERIC METOTLAR devreye girer :
+        //Session'ı geri almak lazım. Session object tutar diyorduk, cast etmesi lazım. Generic Metodlar devreye girer :
         public static T GetObject<T>(this ISession session,string key) where T : class //T generic tip olmak zorunda
         {
             string objectString = session.GetString(key); //session da  json olarak duran stringi yakalıyorum
@@ -32,6 +32,6 @@ namespace CoreMVCIntro.CommonTools
             return deserializedObject;
         }
         //Araba sınıfını session'a atmak istiyorsak : b.SetObject("araba",a);
-        //Çağırmak istiyorsak : GetObject<Araba>("araba");
+        //Çağırmak istiyorsak : GetObject<Araba>("araba"); gibi...
     }
 }

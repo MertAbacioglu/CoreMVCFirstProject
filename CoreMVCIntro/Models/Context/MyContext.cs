@@ -36,6 +36,9 @@ namespace CoreMVCIntro.Models.Context
         {
             modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());//n-n ilişki ayarları barındır
+            base.OnModelCreating(modelBuilder);//1-1 ilişki ayarları barındırır
+
         }
         // .NetCore üzerinden migrate yapmak istediğiniz taktirde add-migratino <parametre> ve sonfrasında update-database demek gerek
 
@@ -44,6 +47,7 @@ namespace CoreMVCIntro.Models.Context
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<EmployeeProfile> EmployeeProfile { get; set; }
 
     }
 }

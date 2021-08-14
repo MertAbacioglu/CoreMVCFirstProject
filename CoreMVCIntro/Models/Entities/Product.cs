@@ -10,8 +10,9 @@ namespace CoreMVCIntro.Models.Entities
         public string ProductName { get; set; }
         public short UnitInStock { get; set; }
         public int CategoryID { get; set; }
+        public decimal UnitPrice { get; set; }
 
         //
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace CoreMVCIntro.Controllers
 {
     //CodeFirst için EFCore indir. Migrations yapabilmek içinse özellikle EFCore.Tools gerekir.
-    //(HomeController'ı düzenlemeden önce Database'e el ile kullnıcı ekledik)
     public class HomeController : Controller
     {
         MyContext _db;
@@ -26,9 +25,9 @@ namespace CoreMVCIntro.Controllers
             return View();
         }
 
-        //.NetCore Authorization işlemleri(artık bir class açmayacağız çnet teki gibi)
+        //.NetCore Authorization işlemleri(.Net'ten farklı olarak artık bir class açamaycağız)
 
-        //Async metotlar her zaman generic bir task döndürmek zorundalar. ister kullan ister kullanma önemli değil ama döndürecek. Task class'ı asenkron  metotların calısma prensipleri hakkında ayrıntılı bilgiyi tutan(metot çalıışırken hata var mı, metotdun bu grevi yapma sırasında  kendisine eşzamanlı gelen istekler metodun calısma durumu(success, failed).. ) o yüzden normal şartlarda döndüreceğiniz dğeri Task'e generic olarak vermek zorundasınız.
+        //Async metotlar her zaman generic bir task döndürmek zorundalar. ister kullan ister kullanma önemli değil ama döndürecek. Task class'ı asenkron  metotların calısma prensipleri hakkında ayrıntılı bilgiyi tutan(metot çalıışırken hata var mı, metotdun bu grevi yapma sırasında  kendisine eşzamanlı gelen istekler metodun calısma durumu(success, failed).. ) o yüzden normal şartlarda döndüreceğiniz değeri Task'e generic olarak vermek zorundayız.
         [HttpPost]
         public async Task<IActionResult> Login(Employee employee)
         {
@@ -46,14 +45,14 @@ namespace CoreMVCIntro.Controllers
 
                 };
 
-                ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login"); //burada login ismine sahip olan güvenlik durumu için hangi güvenlik önlemlerinin çalışacğaını belirlyeceğiz.
+                ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login"); //burada login ismine sahip olan güvenlik durumu için hangi güvenlik önlemlerinin çalışacağını belirleyeceğiz.
 
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);//.NetCore'a burada anlatıyoruz.  //.NetCor'un içerisinde sonlanmış olan security işlemlerinin artık tetiklenmesi lazım. 
 
-                //asenkron methodlar çalıştıkalrı zaman başka bir işlemi nengellenmemesini sağlayan metotlardır. 
+                //asenkron methodlar çalıştıkalrı zaman başka bir işlemin engellenmemesini sağlayan metotlardır. 
 
                 await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index", "Product");
+                return RedirectToAction("ProductList", "Product");
 
 
 

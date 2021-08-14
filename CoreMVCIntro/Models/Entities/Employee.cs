@@ -13,6 +13,7 @@ namespace CoreMVCIntro.Models.Entities
 
         //
         public virtual IList<Order> Orders { get; set; }
+        public virtual EmployeeProfile GetEmployeeProfile { get; set; }
 
     }
 }

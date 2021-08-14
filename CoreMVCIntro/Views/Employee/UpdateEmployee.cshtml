@@ -1,0 +1,20 @@
+﻿@model EmployeeVM 
+@{
+    ViewData["Title"] = "UpdateEmployee";
+}
+
+<h1>UpdateEmployee</h1>
+<form asp-controller="Employee" asp-action="UpdateEmployee" method="post">
+    <input type="hidden" asp-for="Employee.ID"/> @*id'mi gönderiyorum*@
+    <div>
+        <input type="text" asp-for="Employee.FirstName"/>
+    </div>
+    <div>
+        <select asp-for="Employee.UserRole" asp-items="Html.GetEnumSelectList<UserRole>()">
+            <option>
+                Please Select
+            </option>
+        </select>
+        
+    </div>
+</form>

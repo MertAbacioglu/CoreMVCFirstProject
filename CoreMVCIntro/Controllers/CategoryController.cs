@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace CoreMVCIntro.Controllers
 {
     public class CategoryController : Controller
-    {     
+    {
         MyContext _db;
-        
+
         //InterfaceSegrEtion : interfacelerin ayrı ayrı görevlerini tek bir çatı altıdna toplamaktansa sorumluluklarını ekstra daha fazla ayırmak. 
 
         //Dependency Inversion : InterfaceSegration yapılınca DI yani Bağımlıloıkların Gevşemesi) daha kolay olur. Bir yapının herhangi bri yere olan bağımlılığının gevşek tutulmasıdır. DI En rahat IntSeg yapısıyla kullanılır.İstediğimizde bu sorumuluğu değiştirebiliriz.
@@ -24,19 +24,18 @@ namespace CoreMVCIntro.Controllers
         //.NetCore, MVC Helperları korumanın yanı sıra daha kolay ve performanslı bir yapı da sunar. Bunlara TagHelper'lar denir. Normal HTML tagler içierisine yazılan attribute'lardır. Kullanabilmek için namespaceleri gereklidir.(zaten_VşewImport içeirisnde vardır)
 
         //Projeyi wtch run olarak izlemek için proje klasörüne gt cmd yaz enter bas. dotnet watch run yaz. Front end'de yazdığın restart etmeden yansır.
-         
+
         public CategoryController(MyContext db)
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult CategoryList()
         {
             CategoryVM cvm = new CategoryVM
             {
                 Categories = _db.Categories.ToList()
             };
             return View(cvm);
-            
         }
 
         public IActionResult AddCategory()
@@ -49,10 +48,10 @@ namespace CoreMVCIntro.Controllers
         {
             _db.Categories.Add(category);
             _db.SaveChanges();
-            return View();
+            return RedirectToAction("ICategoryList");
         }
 
-       
+
         public IActionResult UpdateCategory(int id)
         {
             CategoryVM cvm = new CategoryVM
@@ -60,7 +59,7 @@ namespace CoreMVCIntro.Controllers
                 Category = _db.Categories.Find(id)
             };
             return View(cvm);
-        
+
         }
 
         [HttpPost]
@@ -71,15 +70,15 @@ namespace CoreMVCIntro.Controllers
             //toBeUpdated.Description = category.Description;
             _db.Entry(toBeUpdated).CurrentValues.SetValues(category);
             _db.SaveChanges();
-            
-            return RedirectToAction("Index");
+
+            return RedirectToAction("ICategoryList");
         }
 
         public IActionResult DeleteCategory(int id)
         {
             _db.Remove(_db.Categories.Find(id));
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ICategoryList");
 
         }
 
