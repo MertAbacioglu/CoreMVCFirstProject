@@ -19,8 +19,8 @@ namespace CoreMVCIntro.Controllers
 
         //.NetCore, MVC Helperları korumanın yanı sıra daha kolay ve performanslı bir yapı da sunar. Bunlar TagHelper'dır. Normal HTML tagler içierisine yazılan attribute'lardır. Kullanabilmek için namespaceleri gereklidir.(zaten_ViewImport içerisinde vardır)
 
-        //Projeyi watch run olarak izlemek istersek proje klasörüne gidip cmd yazar enter'larız. dotnet watch run yazarız. Front end'de yazdığıklarımız projeyi yeniden başlatmaya gerek kalmadan yansır.
-
+        //Projeyi wtch run olarak izlemek için proje klasörüne gt cmd yaz enter bas. dotnet watch run yaz. Front end'de yazdığın restart etmeden yansır.
+         
         public CategoryController(MyContext db)
         {
             _db = db;
@@ -44,7 +44,7 @@ namespace CoreMVCIntro.Controllers
         {
             _db.Categories.Add(category);
             _db.SaveChanges();
-            return RedirectToAction("CategoryList");
+            return View();
         }
 
 
@@ -64,15 +64,15 @@ namespace CoreMVCIntro.Controllers
             Category toBeUpdated = _db.Categories.Find(category.ID);
             _db.Entry(toBeUpdated).CurrentValues.SetValues(category);
             _db.SaveChanges();
-
-            return RedirectToAction("CategoryList");
+            
+            return RedirectToAction("Index");
         }
 
         public IActionResult DeleteCategory(int id)
         {
             _db.Remove(_db.Categories.Find(id));
             _db.SaveChanges();
-            return RedirectToAction("CategoryList");
+            return RedirectToAction("Index");
 
         }
 

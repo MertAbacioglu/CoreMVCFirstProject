@@ -60,6 +60,15 @@ namespace CoreMVCIntro.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 7,
+                            CreatedDate = new DateTime(2021, 8, 15, 0, 41, 9, 498, DateTimeKind.Local).AddTicks(627),
+                            FirstName = "Lemmy",
+                            UserRole = 1
+                        });
                 });
 
             modelBuilder.Entity("CoreMVCIntro.Models.Entities.EmployeeProfile", b =>

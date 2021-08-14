@@ -25,9 +25,9 @@ namespace CoreMVCIntro.Controllers
             return View();
         }
 
-        //.NetCore Authorization işlemleri(.Net'ten farklı olarak artık bir class açma)
+        //.NetCore Authorization işlemleri(artık bir class açmayacağız çnet teki gibi)
 
-        //Async metotlar her zaman generic bir task döndürmek zorundalar. ister kullan ister kullanma önemli değil ama döndürecek. Task class'ı asenkron  metotların calısma prensipleri hakkında ayrıntılı bilgiyi tutan(metot çalışırken hata var mı, metotdun bu grevi yapma sırasında  kendisine eşzamanlı gelen istekler metodun calısma durumu(success, failed).. ) o yüzden normal şartlarda döndüreceğimiz değeri Task'e generic olarak vermek zorundayız.
+        //Async metotlar her zaman generic bir task döndürmek zorundalar. ister kullan ister kullanma önemli değil ama döndürecek. Task class'ı asenkron  metotların calısma prensipleri hakkında ayrıntılı bilgiyi tutan(metot çalıışırken hata var mı, metotdun bu grevi yapma sırasında  kendisine eşzamanlı gelen istekler metodun calısma durumu(success, failed).. ) o yüzden normal şartlarda döndüreceğiniz dğeri Task'e generic olarak vermek zorundasınız.
         [HttpPost]
         public async Task<IActionResult> Login(Employee employee)
         {
@@ -49,7 +49,7 @@ namespace CoreMVCIntro.Controllers
 
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);//.NetCore'a burada anlatıyoruz.  //.NetCor'un içerisinde sonlanmış olan security işlemlerinin artık tetiklenmesi lazım. 
 
-                //asenkron methodlar çalıştıkları zaman başka bir işlemin engellenmemesini sağlayan metotlardır. 
+                //asenkron methodlar çalıştıkalrı zaman başka bir işlemi nengellenmemesini sağlayan metotlardır. 
 
                 await HttpContext.SignInAsync(principal);
                 return RedirectToAction("ProductList", "Product");

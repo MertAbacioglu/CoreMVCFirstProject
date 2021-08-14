@@ -30,6 +30,7 @@ namespace CoreMVCIntro.Models.Context
         public MyContext(DbContextOptions<MyContext> options):base(options)
         {
             //DbContextOptions<MyContext> options ---> Pooldaki yani. o da kendi base'ine gödneriyor
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,9 +39,12 @@ namespace CoreMVCIntro.Models.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());//n-n ilişki ayarları barındır
             base.OnModelCreating(modelBuilder);//1-1 ilişki ayarları barındırır
+            
+            
+
 
         }
-        // .NetCore üzerinden migrate yapmak istediğimiz taktirde add-migration <parametre> ve sonfrasında update-database demek gerek
+        // .NetCore üzerinden migrate yapmak istediğimiz taktirde add-migration <parametre> ve sonrasında update-database demek gerek
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }

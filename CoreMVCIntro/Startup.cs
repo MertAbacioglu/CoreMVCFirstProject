@@ -16,9 +16,11 @@ namespace CoreMVCIntro
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -87,6 +89,8 @@ namespace CoreMVCIntro
                     name: "default",
                     pattern: "{controller=Product}/{action=ProductList}/{id?}");
             });
+
+
         }
     }
 }

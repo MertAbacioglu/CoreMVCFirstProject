@@ -22,8 +22,9 @@
                 <td>@item.Category.CategoryName</td>
                 <td>@item.UnitPrice</td>
                 <td>@item.UnitInStock</td>
-                <td><a asp-controller="Customer" asp-action="AddToCart" asp-route-id="@item.ID"class="btn btn-primary"></a>Add To Cart</td>
+                <td><a asp-controller="Customer" asp-action="AddToCart" asp-route-id="@item.ID" class="btn btn-dark"></a>Add To Cart</td>
             </tr>
+            
         }
     </tbody>
 </table>
