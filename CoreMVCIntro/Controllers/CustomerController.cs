@@ -49,7 +49,6 @@ namespace CoreMVCIntro.Controllers
         {
             if (HttpContext.Session.GetObject<Cart>("scart")==null)
             {
-                TempData["message"] = "There are no products in the cart ";
                 return View();
             }
             else
