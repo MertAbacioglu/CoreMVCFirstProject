@@ -1,0 +1,29 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "ShoppingList";
+}
+
+<h1>ShoppingList</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Category Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Product item in Model.Products)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Category.CategoryName</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.UnitInStock</td>
+                <td><a asp-controller="Customer" asp-action="AddToCart" asp-route-id="@item.ID"class="btn btn-primary"></a>Add To Cart</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -2,19 +2,23 @@
 
 
 <form asp-action="UpdateProduct" asp-controller="Product" method="post">
-        
-    <input type="hidden"asp-for="Product.ID"/> @*id'mi gönderiyorum*@
+
+    <!--<input type="hidden" asp-for="Product.ID" />--> @*id'mi gönderiyorum*@
     <div>
-        <input type="text" asp-for="Product.ProductName" placeholder="ürün adı girin" />
+        <input type="text" asp-for="Product.ProductName" placeholder="type product name" />
     </div>
     <div>
-        <input asp-for="Product.UnitInStock" placeholder="stok girin">
+        <input type="text" asp-for="Product.UnitPrice" placeholder="type price" />
     </div>
     <div>
+        <input asp-for="Product.UnitInStock" placeholder="type stock">
+    </div>
+    <div>
+        <select asp-for="Product.CategoryID" asp-items='new SelectList(Model.Categories,"ID","CategoryName")'>
             <option>
-                Lütfen Seçiniz
+                Please Select
             </option>
         </select>
     </div>
-    <button>Ekle</button>
+    <button>Add</button>
 </form>

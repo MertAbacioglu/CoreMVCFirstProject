@@ -1,15 +1,15 @@
 ﻿@model CategoryVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CategoryList";
 }
 
 <h1>Index</h1>
 
 @if (Model.Categories.Count == 0)
 {
-    <div class="jumbotron">
-        Bir kategori eklenmemiş...Eklemek için <a asp-action="AddCategory" asp-controller="Category">Tıklayınız</a>
-    </div>
+<div class="jumbotron">
+    No category has been added yet ...Click to add <a asp-action="AddCategory" asp-controller="Category">Tıklayınız</a>
+</div>
 }
 else
 {
@@ -17,7 +17,7 @@ else
         <tr>
             <th>CategoryName</th>
             <th>Description</th>
-            <th colspan="2" style="text-align:center">İşlemler</th>
+            <th colspan="2" style="text-align:center">Options</th>
         </tr>
         @foreach (Category item in Model.Categories)
         {
@@ -29,10 +29,10 @@ else
                     @item.Description 
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="UpdateCategory" asp-controller="Category" asp-route-id="@item.ID">Kategori Güncelle</a>
+                    <a class="btn btn-warning" asp-action="UpdateCategory" asp-controller="Category" asp-route-id="@item.ID">Update Category</a>
                 </td>
                 <td>
-                    <a class="btn btn-danger" asp-action="DeleteCategory" asp-controller="Category"asp-route-id="@item.ID">Kategory Sil</a>
+                    <a class="btn btn-danger" asp-action="DeleteCategory" asp-controller="Category"asp-route-id="@item.ID">Delete Category</a>
                 </td>
             </tr>
         }

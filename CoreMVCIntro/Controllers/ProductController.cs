@@ -16,7 +16,7 @@ namespace CoreMVCIntro.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult ProductList()
         {
             ProductVM pvm = new ProductVM
             {
@@ -40,7 +40,7 @@ namespace CoreMVCIntro.Controllers
         {
             _db.Products.Add(product);
             _db.SaveChanges();
-            return View("Index");
+            return RedirectToAction("ProductList");
         }
         public IActionResult UpdateProduct(int id)
         {
@@ -57,14 +57,14 @@ namespace CoreMVCIntro.Controllers
         {
             Product toBeUpdated = _db.Products.Find(product.ID);
             _db.Entry(toBeUpdated).CurrentValues.SetValues(product);
-            return View("Index");
+            return View("ProductList");
         }
 
         public IActionResult DeleteProduct(int id)
         {
             _db.Products.Remove(_db.Products.Find(id));
             _db.SaveChanges();
-            return View("Index");
+            return RedirectToAction("ProductList");
         }
     }
 }

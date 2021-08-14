@@ -1,0 +1,32 @@
+﻿@model Cart
+@{
+    ViewData["Title"] = "CartPage";
+}
+
+<h1>CartPage</h1>
+
+@if (TempData["message"] != null)
+{
+    <h1>@TempData["message"]</h1>
+}
+else
+{
+    <table>
+        <tr>
+            <td>Product Name</td>
+            <td>Unit Price</td>
+            <td>Amount</td>
+            <td>Total Price</td>
+        </tr>
+        @foreach (CartItem item in Model.MyCart)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Amount</td>
+                <td>@item.SubTotal</td>
+            </tr>
+        }
+    </table>
+}
+

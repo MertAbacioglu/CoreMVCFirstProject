@@ -4,14 +4,16 @@ using CoreMVCIntro.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoreMVCIntro.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20210814142728_PriceMigration")]
+    partial class PriceMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,7 @@ namespace CoreMVCIntro.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("Yaratılma Tarihi");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -60,22 +61,6 @@ namespace CoreMVCIntro.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("CoreMVCIntro.Models.Entities.EmployeeProfile", b =>
-                {
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SpecialDetails")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("EmployeeProfile");
                 });
 
             modelBuilder.Entity("CoreMVCIntro.Models.Entities.Order", b =>
@@ -149,17 +134,6 @@ namespace CoreMVCIntro.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("CoreMVCIntro.Models.Entities.EmployeeProfile", b =>
-                {
-                    b.HasOne("CoreMVCIntro.Models.Entities.Employee", "Employee")
-                        .WithOne("GetEmployeeProfile")
-                        .HasForeignKey("CoreMVCIntro.Models.Entities.EmployeeProfile", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("CoreMVCIntro.Models.Entities.Order", b =>
                 {
                     b.HasOne("CoreMVCIntro.Models.Entities.Employee", "Employee")
@@ -208,8 +182,6 @@ namespace CoreMVCIntro.Migrations
 
             modelBuilder.Entity("CoreMVCIntro.Models.Entities.Employee", b =>
                 {
-                    b.Navigation("GetEmployeeProfile");
-
                     b.Navigation("Orders");
                 });
 

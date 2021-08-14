@@ -1,15 +1,16 @@
 ﻿@model ProductVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ProductList";
 }
 
-<h1>Index</h1>
+<h1>ProductList</h1>
 
 <table class="table table-hover">
     <tr>
         <th>Product Name</th>
         <th>Units In Stock</th>
         <th>Category Name</th>
+        <th colspan="2" style="text-align:center">Options</th>
     </tr>
     @foreach (Product item in Model.Products)
     {
@@ -22,10 +23,10 @@
             }
             else
             {
-            <td>kategori belirtilmemiş</td>
+            <td>no category</td>
             }
-            <td><a asp-action="AddCategory" asp-controller="Product" asp-route-id="@item.ID"></a></td>
-            <td><a asp-action="UpdateCategory" asp-controller="Product" asp-route-id="@item.ID"></a></td>
+            <td><a class="btn btn-warning" asp-action="UpdateProduct" asp-controller="Product" asp-route-id="@item.ID"> Update</a></td>
+            <td><a class="btn btn-danger" asp-action="DeleteProduct" asp-controller="Product" asp-route-id="@item.ID">Delete</a></td>
         </tr>
     }
 </table>
